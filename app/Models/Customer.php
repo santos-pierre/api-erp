@@ -12,6 +12,8 @@ class Customer extends Model
 
     public $incrementing = false;
 
+    protected $fillable = ["name","birth_date", "email", "phone_number"];
+
     protected static function boot()
     {
         parent::boot();
