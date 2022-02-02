@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Address extends Model
+class Customer extends Model
 {
     use HasFactory;
 
@@ -21,8 +21,8 @@ class Address extends Model
         });
     }
 
-    public function customer()
+    public function addresses()
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasMany(Address::class);
     }
 }
