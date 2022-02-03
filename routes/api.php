@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CommandController;
 use App\Http\Controllers\CommandStatusController;
 use App\Http\Controllers\CustomerController;
-use App\Models\CommandStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('customers', CustomerController::class);
 
 Route::apiResource('addresses', AddressController::class);
+
+Route::apiResource('commands', CommandController::class);
 
 Route::get('command_status', [CommandStatusController::class, 'index']);

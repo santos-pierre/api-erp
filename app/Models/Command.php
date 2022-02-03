@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Customer extends Model
+class Command extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'num_command';
+
     public $incrementing = false;
 
-    protected $fillable = ["name","birth_date", "email", "phone_number"];
+    protected $fillable = ["num_command", 'customer_id',"command_status_id"];
 
     protected static function boot()
     {
@@ -23,13 +25,13 @@ class Customer extends Model
         });
     }
 
-    public function addresses()
+    public function status()
     {
-        return $this->hasMany(Address::class);
+        return $this->belongsTo(CommandStatus::class);
     }
 
-    public function commands()
+    public function customer()
     {
-        return $this->hasMany(Command::class);
+        return $this->belongsTo(Customer::class);
     }
 }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Address;
+use App\Models\CommandStatus;
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CommandStatusSeeder::class
         ]);
+        \App\Models\Command::factory()->state([
+            'customer_id' => Customer::all()->random()->first()->id,
+            'status_id' => CommandStatus::all()->random()->first()->id
+        ])->count(5)->create();
     }
 }
