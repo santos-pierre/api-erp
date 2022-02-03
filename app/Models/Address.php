@@ -12,6 +12,8 @@ class Address extends Model
 
     public $incrementing = false;
 
+    protected $fillable = ["street_name","street_number", "zip_code", "city_name", "country", "customer_id"];
+
     protected static function boot()
     {
         parent::boot();
@@ -23,6 +25,6 @@ class Address extends Model
 
     public function customer()
     {
-        return $this->hasOne(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 }
