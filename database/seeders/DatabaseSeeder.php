@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Customer::factory()->has(Address::factory()->count(2), 'addresses')->count(5)->create();
+        $this->call([
+            CommandStatusSeeder::class
+        ]);
     }
 }
