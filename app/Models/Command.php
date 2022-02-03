@@ -34,4 +34,9 @@ class Command extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'command_product', 'num_command', 'num_product')->using(CommandProduct::class)->withTimestamps();
+    }
 }
