@@ -15,11 +15,13 @@ class CreateCommandProductTable extends Migration
     {
         Schema::create('command_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('num_command')->constrained('commands', 'num_command');
-            $table->foreignUuid('num_product')->constrained('products', 'num_product');
+            $table->uuid('num_command_id');
+            $table->uuid('num_product_id');
             $table->integer('quantity');
             $table->integer('unit_price');
             $table->integer("TVA")->default(21);
+            $table->foreign('num_command_id')->references('num_command')->on('commands');
+            $table->foreign('num_product_id')->references('num_product')->on('products');
             $table->timestamps();
         });
     }

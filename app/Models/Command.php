@@ -14,7 +14,7 @@ class Command extends Model
 
     public $incrementing = false;
 
-    protected $fillable = ["num_command", 'customer_id',"command_status_id"];
+    protected $fillable = ["num_command", 'customer_id',"status_id"];
 
     protected static function boot()
     {
@@ -37,6 +37,6 @@ class Command extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'command_product', 'num_command', 'num_product')->using(CommandProduct::class)->withTimestamps();
+        return $this->belongsToMany(Product::class, 'command_product', 'num_command_id', 'num_product_id')->using(CommandProduct::class)->withTimestamps();
     }
 }

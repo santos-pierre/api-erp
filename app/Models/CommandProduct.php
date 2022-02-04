@@ -8,5 +8,5 @@ class CommandProduct extends Pivot
 {
     protected $table= 'command_product';
 
-    protected $fillable = ["num_command", 'num_product',"quantity","unit_price"];
+    protected $fillable = ["num_command_id", 'num_product_id',"quantity","unit_price", "TVA"];
 }

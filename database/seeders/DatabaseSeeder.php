@@ -29,6 +29,5 @@ class DatabaseSeeder extends Seeder
         $product = \App\Models\Product::all()->first();
         $command = \App\Models\Command::all()->first();
         $command->products()->attach($product, ['quantity' => 3, 'unit_price' => $product->price, 'TVA' => $product->TVA]);
-        dd($command->products);
     }
 }

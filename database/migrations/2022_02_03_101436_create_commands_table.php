@@ -16,7 +16,7 @@ class CreateCommandsTable extends Migration
         Schema::create('commands', function (Blueprint $table) {
             $table->uuid('num_command')->primary();
             $table->foreignUuid('status_id')->constrained('command_statuses', 'id');
-            $table->foreignUuid('customer_id')->constrained('customers');
+            $table->foreignUuid('customer_id')->constrained('customers', 'id');
             $table->timestamps();
             $table->softDeletes();
         });
