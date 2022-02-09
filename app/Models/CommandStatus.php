@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
-class Address extends Model
+class CommandStatus extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
 
-    protected $fillable = ["street_name","street_number", "zip_code", "city_name", "country", "customer_id"];
+    protected $fillable = ["status_name"];
 
     protected static function boot()
     {
@@ -23,8 +24,8 @@ class Address extends Model
         });
     }
 
-    public function customer()
+    public static function defaultId()
     {
-        return $this->belongsTo(Customer::class);
+        return DB::table('command_statuses')->where('name', 'Pending')->get('id')->pluck("id")->first();
     }
 }

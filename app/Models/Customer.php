@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Address extends Model
+class Customer extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
 
-    protected $fillable = ["street_name","street_number", "zip_code", "city_name", "country", "customer_id"];
+    protected $fillable = ["name","birth_date", "email", "phone_number"];
 
     protected static function boot()
     {
@@ -23,8 +23,13 @@ class Address extends Model
         });
     }
 
-    public function customer()
+    public function addresses()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->hasMany(Address::class);
+    }
+
+    public function commands()
+    {
+        return $this->hasMany(Command::class);
     }
 }

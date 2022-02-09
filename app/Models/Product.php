@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Address extends Model
+class Product extends Model
 {
     use HasFactory;
 
     public $incrementing = false;
 
-    protected $fillable = ["street_name","street_number", "zip_code", "city_name", "country", "customer_id"];
+    protected $primaryKey = 'num_product';
+
+    protected $fillable = ["num_product","name", "price", "TVA"];
 
     protected static function boot()
     {
@@ -23,8 +25,8 @@ class Address extends Model
         });
     }
 
-    public function customer()
+    public function commands()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsToMany(Command::class, 'command_product', 'num_product', 'num_command')->using(CommandProduct::class)->withTimestamps();
     }
 }
