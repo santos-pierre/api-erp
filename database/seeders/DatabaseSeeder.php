@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Customer::factory()->has(Address::factory()->count(2), 'addresses')->count(5)->create();
+        \App\Models\Customer::factory()->has(Address::factory()->count(2), 'addresses')->count(3)->create();
         $this->call([
             CommandStatusSeeder::class,
             ProductSeeder::class
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Command::factory()->state([
             'customer_id' => Customer::all()->random()->first()->id,
             'status_id' => CommandStatus::all()->random()->first()->id
-        ])->count(2)->create();
+        ])->count(1)->create();
 
         $product = \App\Models\Product::all()->first();
         $command = \App\Models\Command::all()->first();

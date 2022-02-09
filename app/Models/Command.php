@@ -37,6 +37,6 @@ class Command extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'command_product', 'num_command_id', 'num_product_id')->using(CommandProduct::class)->withTimestamps();
+        return $this->belongsToMany(Product::class, 'command_product', 'num_command_id', 'num_product_id')->using(CommandProduct::class)->withTimestamps()->withPivot('unit_price', 'quantity', 'TVA');
     }
 }
